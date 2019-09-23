@@ -1,0 +1,76 @@
+<div class="container">
+
+  <div class="row">
+    <div class="col-4">
+      <img src="{{col.photoUrl}}" class="card-img-top" alt="...">
+    </div>
+    <div class="col-8">
+      <div class="row">
+        <div class="col-6">
+          <p>Nom : </p>
+        </div>
+        <div class="col-6">
+          <p>{{col.nom | uppercase}}</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          <p>Prenom : </p>
+        </div>
+        <div class="col-6">
+          <p>{{col.prenoms}}</p>
+        </div>
+      </div>
+        <div class="row">
+          <div class="col-6">
+          <p>Matricule :</p>
+        </div>
+        <div class="col-6">
+          <p>{{col.matricule}}</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          <p>Date De Naissance :</p>
+        </div>
+        <div class="col-6">
+          <p>{{col.dateDeNaissance |date:'dd/MM/yyyy'}}</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          <p>Email : </p>
+        </div>
+        <div class="col-6">
+          <p *ngIf="modification">{{col.email}}</p>
+          <input *ngIf="!modification" type="email" class="form-control" id="exampleInputEmail1"
+            aria-describedby="emailHelp" placeholder="Enter email">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          <p>url photo :</p>
+        </div>
+        
+          <div class="col-6">
+            <p *ngIf="modification">{{col.photoUrl}}</p>
+            <input *ngIf="!modification" type="email" class="form-control" id="exampleInputEmail1"
+              aria-describedby="emailHelp" placeholder="Enter email">
+          </div>
+        
+      </div>
+    </div>
+
+
+  </div>
+  <div class="row">
+    <div class="col">
+      <a href="#" class="alert-link" (click)=creerUnNouveauCollegue()>Creer un nouveau collegue</a>
+    </div>
+    <div class="col">
+      <a *ngIf="modification" href="#" class="btn btn-primary" (click)=modifierCollegue()>Modifier</a>
+      <a *ngIf="!modification" href="#" class="btn btn-primary" (click)=validerCollegue()>Valider</a>
+    </div>
+  </div>
+</div>
+
