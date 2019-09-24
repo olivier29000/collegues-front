@@ -1,6 +1,7 @@
 import { Component, OnInit,Input } from '@angular/core';
 import { CollegueMock } from '../mock/collegues.mock';
 import { Collegue } from '../models/collegue';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-recherche-collegue-par-nom',
@@ -9,15 +10,20 @@ import { Collegue } from '../models/collegue';
 })
 export class RechercheCollegueParNomComponent implements OnInit {
 
-  @Input() maListeDeCollegues: Collegue[];
-  debutDuNomDuCollegue:string="";
-  constructor() { }
+ 
+  
 
-  rechercheCollegue(recherche:string){
-    this.debutDuNomDuCollegue=recherche;
+  constructor(private dataService:DataService) { }
+
+  debutDuNomDuCollegue:string="";
+  maListeDeMatricules: string[]=this.dataService.rechercherParNom(this.debutDuNomDuCollegue);
+
+  rechercheCollegue(debutDuNomDuCollegue:string){
+    this.debutDuNomDuCollegue=debutDuNomDuCollegue;
+    this.maListeDeMatricules=this.dataService.rechercherParNom(this.debutDuNomDuCollegue);
   }
-  rechercheCollegueEnFonctionSaisie(collegue:Collegue,debutDuNomDuCollegue:string):boolean{
-    return(collegue.nom.substring(0,debutDuNomDuCollegue.length)==debutDuNomDuCollegue)
+  rechercheCollegueEnFonctionSaisie(debutDuNomDuCollegue:string):void{
+    this.debutDuNomDuCollegue=debutDuNomDuCollegue;
   }
   ngOnInit() {
   }

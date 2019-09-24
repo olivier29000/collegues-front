@@ -17,17 +17,18 @@
             </div>
         </div>
 
-        <div *ngFor="let collegue of maListeDeCollegues">
+        <div *ngFor="let matricule of maListeDeMatricules">
 
-            <div class="row" *ngIf=rechercheCollegueEnFonctionSaisie(collegue,debutDuNomDuCollegue)>
-
+            
+                <div class="row">
                 <div class="col-6 ">
-                    <p class="card-text">{{collegue.nom}} {{collegue.prenoms}}</p>
+                    <p class="card-text">matricule</p>
                 </div>
                 <div class="col-6">
-                    <p class="card-text">{{collegue.matricule}}</p>
+                    <p class="card-text">{{matricule}}</p>
                 </div>
             </div>
+            
 
         </div>
 
