@@ -15,12 +15,7 @@ export class AppComponent {
 
   unObjetCollegueFourni:Collegue=new CollegueMock().collegueMock;
   title = 'collegues-front';
-  maListeDeCollegues:Collegue[]=[
-    new CollegueMock().collegueMock,
-    new CollegueMock().collegueMock,
-    new CollegueMock().collegueMock,
-    new CollegueMock().collegueMock
-  ];
+  maListeDeCollegues:Collegue[]=new CollegueMock().listeDeCollegueMock;
 
   constructor() {
     

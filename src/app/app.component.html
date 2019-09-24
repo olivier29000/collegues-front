@@ -1,14 +1,17 @@
+<app-menu></app-menu>
 <div class="container">
 
         <div class="row">
-                <div class="col-6">
+                <div class="col-md">
 
-                        <app-recherche-collegue-par-nom [maListeDeCollegues]="maListeDeCollegues"></app-recherche-collegue-par-nom>
-                        
+                        <app-recherche-collegue-par-nom [maListeDeCollegues]="maListeDeCollegues">
+                        </app-recherche-collegue-par-nom>
+
                 </div>
-          <div class="col-6">
+                <div class="col-md">
 
-<app-collegue [col]="unObjetCollegueFourni"></app-collegue>
-</div>
+                        <app-collegue [col]="unObjetCollegueFourni"></app-collegue>
+                </div>
 
+        </div>
 </div>

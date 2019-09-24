@@ -10,13 +10,15 @@ import { Collegue } from '../models/collegue';
 export class RechercheCollegueParNomComponent implements OnInit {
 
   @Input() maListeDeCollegues: Collegue[];
-  debutDuNomDuCollegue:string;
+  debutDuNomDuCollegue:string="";
   constructor() { }
 
   rechercheCollegue(recherche:string){
     this.debutDuNomDuCollegue=recherche;
   }
-
+  rechercheCollegueEnFonctionSaisie(collegue:Collegue,debutDuNomDuCollegue:string):boolean{
+    return(collegue.nom.substring(0,debutDuNomDuCollegue.length)==debutDuNomDuCollegue)
+  }
   ngOnInit() {
   }
 
