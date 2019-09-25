@@ -14,7 +14,9 @@ export class AuthentificationComponent implements OnInit {
   }
 
   authentification(email:string,password:string){
+    console.log("nomUtilisateur : " + email,"password : " +password)
     this.authService.authentification(email,password)
+    return false;
   }
 
 }

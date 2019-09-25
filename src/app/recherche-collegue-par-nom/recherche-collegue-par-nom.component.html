@@ -35,3 +35,40 @@
 
     </div>
 </div>
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title text-center">
+
+            Recherche par nom
+
+        </h5>
+
+        <div class="row">
+
+            <div class="col-6">
+                <input #nom class="form-control" id="inputRechercheMail" aria-describedby="RechercheNomHelp"
+                    placeholder="Entrez un nom">
+            </div>
+            <div class="col-6 text-center">
+                <a href="#"  (click)=rechercherPosts(nom.value)>Rechercher</a>
+            </div>
+        </div>
+
+        <div *ngFor="let matricule of listeDeMatricules">
+
+            
+                <div class="row">
+                <div class="col-6 ">
+                    <p class="card-text">matricule</p>
+                </div>
+                <div class="col-6">
+                    <a href="#"  (click)=afficherCollegue(matricule)><p class="card-text" >{{matricule}}</p></a></div>
+                </div>
+            </div>
+            
+
+        </div>
+
+
+    </div>

@@ -11,9 +11,12 @@ import { DataService } from '../services/data.service';
 export class RechercheCollegueParNomComponent implements OnInit {
 
  
-  
+  listeDeMatricules: string[] = [];
 
   constructor(private dataService:DataService) { }
+
+  ngOnInit() {
+  }
 
   debutDuNomDuCollegue:string="";
   maListeDeMatricules: string[]=this.dataService.rechercherParNom(this.debutDuNomDuCollegue);
@@ -25,7 +28,14 @@ export class RechercheCollegueParNomComponent implements OnInit {
   rechercheCollegueEnFonctionSaisie(debutDuNomDuCollegue:string):void{
     this.debutDuNomDuCollegue=debutDuNomDuCollegue;
   }
-  ngOnInit() {
+  
+  rechercherPosts(nom:string) {
+    this.dataService.trouverPosts(nom).subscribe(list => (this.listeDeMatricules = list));
+  }
+
+  afficherCollegue(matricule){
+    console.log(matricule);
+    this.dataService.publicationCollegueCourant(matricule);
   }
 
 }

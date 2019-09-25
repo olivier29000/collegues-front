@@ -20,7 +20,7 @@ const httpOptions = {
 })
 export class AuthService {
 
-authentification(email,password){
+authentification(_nomUtilisateur,_motDePasse){
   this._http
   .post(
     // url d'accès au service
@@ -28,8 +28,8 @@ authentification(email,password){
 
     // corps de la réquête
     {
-      nomUtilisateur: "u1",
-      motDePasse: "pass1"
+      nomUtilisateur: _nomUtilisateur,
+      motDePasse: _motDePasse
     },
 
     // options de la requête HTTP
