@@ -11,18 +11,18 @@ import { Subscription } from 'rxjs';
 export class CollegueComponent implements OnInit {
   contrat: Subscription;
   col: Collegue=this.dataService.recupererCollegueCourantAuDebut();
-  matriculeCourant:string="";
+  collegueCourant:Collegue;
   modification:boolean=true;
 
   constructor(private dataService:DataService) { }
 
   ngOnInit() {
-    this.contrat = this.dataService.subPostObs.subscribe(matricule =>{
+    this.contrat = this.dataService.subPostObs.subscribe(collegue =>{
 
+      console.log(collegue);
+      this.col=collegue;
       
-      this.matriculeCourant=matricule;
-      this.dataService.recupererCollegueCourant(this.matriculeCourant).subscribe(collegue=>this.col=collegue)
-      console.log("autre " + this.matriculeCourant)});
+      console.log("autre " + this.col)});
 
       
 

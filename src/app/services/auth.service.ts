@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
     HttpHeaders
   } from "@angular/common/http";
   import { HttpClient, HttpResponse, HttpErrorResponse } from "@angular/common/http";
-
+  import { Observable, of, Subject, BehaviorSubject } from 'rxjs';
 
 const URL_BACKEND = environment.backendUrl;
 const httpOptions = {
@@ -19,6 +19,8 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class AuthService {
+
+  private subConnecte = new BehaviorSubject(false);
 
 authentification(_nomUtilisateur,_motDePasse){
   this._http
@@ -37,12 +39,18 @@ authentification(_nomUtilisateur,_motDePasse){
   )
   .subscribe((data: any) => {
     console.log(data);
+    this.subConnecte.next(true);
+    console.log("authentification reussi");
   },(error: HttpErrorResponse) => {
     console.log("error", error);
+    this.subConnecte.next(false);
   });
+}
+  get subConnecteObs(): Observable<Boolean> {
+    return this.subConnecte.asObservable();
+  }
   
 
-}
   
 
 

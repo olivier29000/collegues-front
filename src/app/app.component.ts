@@ -1,6 +1,9 @@
 import { Input,Component } from '@angular/core';
 import { Collegue } from './models/Collegue';
 import { CollegueMock } from './mock/collegues.mock';
+import { Subscription } from 'rxjs';
+import { DataService } from './services/data.service';
+import { AuthService } from './services/auth.service';
 
 
 
@@ -13,13 +16,29 @@ import { CollegueMock } from './mock/collegues.mock';
 })
 export class AppComponent {
 
-  unObjetCollegueFourni:Collegue=new CollegueMock().collegueMock;
+  
   title = 'collegues-front';
-  maListeDeCollegues:Collegue[]=new CollegueMock().listeDeCollegueMock;
 
-  constructor() {
-    
+  contrat: Subscription;
+  connexion:Boolean;
+
+  constructor(private authService:AuthService) { }
+
+  ngOnInit() {
+    this.contrat = this.authService.subConnecteObs.subscribe(booleanConnexion =>{
+
+      this.connexion=booleanConnexion});
+
+      
+
+      //this.col=this.dataService.recupererCollegueCourant(this.matriculeCourant)
   }
+
+
+
+
+
+  
 
   
 }
