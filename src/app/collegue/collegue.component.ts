@@ -3,47 +3,28 @@ import { Collegue } from '../models/Collegue';
 import { DataService } from '../services/data.service';
 import { Subscription } from 'rxjs';
 
+
+
+
 @Component({
   selector: 'app-collegue',
   templateUrl: './collegue.component.html',
   styleUrls: ['./collegue.component.css']
 })
 export class CollegueComponent implements OnInit {
-  contrat: Subscription;
-  col: Collegue=this.dataService.recupererCollegueCourantAuDebut();
-  collegueCourant:Collegue;
-  modification:boolean=true;
+  creationCollegue:boolean=false;
+  constructor() { }
 
-  constructor(private dataService:DataService) { }
+  ngOnInit() {}
 
-  ngOnInit() {
-    this.contrat = this.dataService.subPostObs.subscribe(collegue =>{
-
-      console.log(collegue);
-      this.col=collegue;
-      
-      console.log("autre " + this.col)});
-
-      
-
-      //this.col=this.dataService.recupererCollegueCourant(this.matriculeCourant)
+  retour(){
+    this.creationCollegue=true;
   }
-
-  creerUnNouveauCollegue(){
-    console.log ("creerUnNouveauCollegue");
-  }
-
-  modifierCollegue(){
+  modifierVisualiserCollegue(){
     console.log ("modifierCollegue");
     
-      this.modification=false;
+      this.creationCollegue=false;
   
   }
-  validerCollegue(){
-    console.log ("validerCollegue");
-      this.modification=true;
-    
-  }
-  
 
 }

@@ -1,10 +1,21 @@
 import { Injectable } from '@angular/core';
 import { Collegue } from '../models/Collegue';
 import { CollegueMock } from '../mock/collegues.mock';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient , HttpErrorResponse} from '@angular/common/http';
 import { tap } from 'rxjs/operators';
 import { Observable, of, Subject, BehaviorSubject } from 'rxjs';
 import { ObjetRechercheMatricule } from '../models/objetRechercheMatricule';
+import {environment} from '../../environments/environment';
+import {HttpHeaders} from "@angular/common/http";
+
+const URL_BACKEND = environment.backendUrl;
+const httpOptions = {
+  headers: new HttpHeaders({
+    "Content-Type": "application/json"
+  }),
+  withCredentials:true
+};
+
 
 @Injectable({
   providedIn: 'root'
@@ -14,11 +25,41 @@ export class DataService {
   private matriculesCache:ObjetRechercheMatricule[]=[];
   private colleguesCache:Collegue[]=[];
   private subPost = new Subject<Collegue>();
-  private subConnecte = new BehaviorSubject(false);
+  
+  
 
   constructor(private http: HttpClient) { }
 
-  
+  creerCollegue(nom,prenom,dateDeNaissance,email,urlPhoto){
+
+    this.http
+  .post(
+    // url d'accès au service
+    URL_BACKEND + `/collegues`,
+
+    // corps de la réquête
+    {
+      nom:nom,
+      prenoms:prenom,
+      dateDeNaissance:dateDeNaissance,
+      email: email,
+      photoUrl: urlPhoto
+    },
+
+    // options de la requête HTTP
+    httpOptions
+  ).subscribe((data: any) => {
+    console.log(data);
+    //this.subConnecte.next(true);
+    console.log("creation reussi");
+    //this.modifierCollegueDansLeCache(email,urlPhoto,matricule);
+  },(error: HttpErrorResponse) => {
+    console.log("error", error);
+    //this.subConnecte.next(false);
+  });
+
+  }
+
 
   recupererCollegueCourant(matricule:string): Observable<Collegue> {
     // TODO retourner le collègue fictif à partir du fichier `src/app/mock/collegues.mock.ts`.
@@ -42,6 +83,40 @@ export class DataService {
           tap(collegue => {
           this.colleguesCache.push(collegue)
         }));
+  }
+
+  modifierCollegue(email:string,urlPhoto:string,matricule:string){
+    this.http
+  .post(
+    // url d'accès au service
+    URL_BACKEND + `/collegues/${matricule}`,
+
+    // corps de la réquête
+    {
+      email: email,
+      photoUrl: urlPhoto
+    },
+
+    // options de la requête HTTP
+    httpOptions
+  ).subscribe((data: any) => {
+    console.log(data);
+    //this.subConnecte.next(true);
+    console.log("modification reussi");
+    this.modifierCollegueDansLeCache(email,urlPhoto,matricule);
+  },(error: HttpErrorResponse) => {
+    console.log("error", error);
+    //this.subConnecte.next(false);
+  });
+  }
+
+  modifierCollegueDansLeCache(email:string,urlPhoto:string,matricule:string){
+    for (let collegue of this.colleguesCache) {
+      if (collegue.matricule==matricule) {
+        collegue.email=email;
+        collegue.photoUrl=urlPhoto;
+      }
+    } 
   }
 
   recupererCollegueCourantAuDebut():Collegue{
@@ -86,6 +161,9 @@ export class DataService {
   get subPostObs(): Observable<Collegue> {
     return this.subPost.asObservable();
   }
+
+
+  
   }
 
 

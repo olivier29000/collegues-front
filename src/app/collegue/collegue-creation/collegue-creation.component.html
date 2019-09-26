@@ -1,0 +1,103 @@
+<div class="container">
+
+    <div class="media">
+        
+        <div class="media-body">
+
+
+
+            <form  #etatForm="ngForm">
+
+                <div class="row">
+                    <div class="col-6">
+                        <p class="card-text">Nom : <small id="passwordHelp" class="text-danger"
+                                *ngIf="etatNom.dirty && etatNom.invalid">
+                                Must be 8-20 characters long.
+                            </small></p>
+
+                    </div>
+                    <div class="col-6">
+
+                        <input [(ngModel)]="personne.nom" name="nom" type="text" class="form-control" required
+                            minlength="4" #etatNom="ngModel">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <p class="card-text">Prenom : <small class="text-danger"
+                                *ngIf="etatPrenom.dirty && etatPrenom.invalid">
+                                Must be 8-20 characters long.
+                            </small></p>
+
+                    </div>
+                    <div class="col-6">
+
+                        <input [(ngModel)]="personne.prenom" name="prenom" type="text" class="form-control" required
+                            minlength="4" #etatPrenom="ngModel">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <p class="card-text">Date De Naissance : <small class="text-danger"
+                                *ngIf="etatDateDeNaissance.dirty && etatDateDeNaissance.invalid">
+                                Must be 8-20 characters long.
+                            </small></p>
+
+                    </div>
+                    <div class="col-6">
+
+                        <input  (click)="d.toggle()"  ngbDatepicker #d="ngbDatepicker" [(ngModel)]="personne.dateDeNaissance" name="dateDeNaissance" type="date"
+                            class="form-control" aria-describedby="emailHelp" required minlength="4"
+                            #etatDateDeNaissance="ngModel">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <p class="card-text">Email : <small id="passwordHelp" class="text-danger"
+                                *ngIf="etatEmail.dirty && etatEmail.invalid">
+                                Must be 8-20 characters long.
+                            </small></p>
+
+                    </div>
+                    <div class="col-6">
+
+                        <input [(ngModel)]="personne.email" name="email" type="email" class="form-control"
+                            id="exampleInputEmail1" aria-describedby="emailHelp" required minlength="4"
+                            #etatEmail="ngModel">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <p class="card-text">url photo :
+                            <small id="passwordHelp" class="text-danger"
+                                *ngIf="etatUrlPhoto.dirty && etatUrlPhoto.invalid">
+                                Must be 8-20 characters long.
+                            </small>
+                        </p>
+
+                          </div>
+
+                    <div class="col-6">
+
+                        <input [(ngModel)]="personne.urlPhoto" name="urlPhoto" type="email" class="form-control"
+                            id="exampleInputEmail1" aria-describedby="emailHelp" required minlength="4"
+                            #etatUrlPhoto="ngModel">
+                    </div>
+
+                </div>
+
+                <a href="#" class="btn btn-primary"
+                    (click)="creerCollegue(personne.nom,personne.prenom,personne.dateDeNaissance,personne.email,personne.urlPhoto)"
+                    [ngClass]="{'isDisabled':etatForm.dirty && etatForm.invalid}">Créer Collegue</a>
+                
+            </form>
+
+
+
+        </div>
+
+
+
+
+
+    </div>

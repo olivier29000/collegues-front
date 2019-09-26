@@ -7,21 +7,28 @@ import { RechercheCollegueParNomComponent } from './recherche-collegue-par-nom/r
 import { MenuComponent } from './menu/menu.component';
 import { AuthentificationComponent } from './authentification/authentification.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { CollegueCreationComponent } from './collegue/collegue-creation/collegue-creation.component';
 
 
+
+import { VisuModifCollegueComponent } from './collegue/visu-modif-collegue/visu-modif-collegue.component';
 @NgModule({
   declarations: [
     AppComponent,
     CollegueComponent,
     RechercheCollegueParNomComponent,
     MenuComponent,
-    AuthentificationComponent
+    AuthentificationComponent,
+    CollegueCreationComponent,
+    VisuModifCollegueComponent
   ],
 
   imports: [
     NgbModule,
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

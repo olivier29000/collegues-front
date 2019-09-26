@@ -19,15 +19,18 @@ export class AppComponent {
   
   title = 'collegues-front';
 
-  contrat: Subscription;
+  contratConnexion: Subscription;
+  
   connexion:Boolean;
+  
 
   constructor(private authService:AuthService) { }
 
   ngOnInit() {
-    this.contrat = this.authService.subConnecteObs.subscribe(booleanConnexion =>{
+    this.contratConnexion = this.authService.subConnecteObs.subscribe(booleanConnexion =>{
 
       this.connexion=booleanConnexion});
+
 
       
 
