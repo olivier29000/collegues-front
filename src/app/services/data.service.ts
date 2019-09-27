@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Collegue } from '../models/Collegue';
 import { CollegueMock } from '../mock/collegues.mock';
 import { HttpClient , HttpErrorResponse} from '@angular/common/http';
-import { tap } from 'rxjs/operators';
+import { tap, map } from 'rxjs/operators';
 import { Observable, of, Subject, BehaviorSubject } from 'rxjs';
 import { ObjetRechercheMatricule } from '../models/objetRechercheMatricule';
 import {environment} from '../../environments/environment';
@@ -16,7 +16,10 @@ const httpOptions = {
   withCredentials:true
 };
 
-
+interface CorpsGetPhoto {
+  matricule: string;
+  urlPhoto: string;
+}
 @Injectable({
   providedIn: 'root'
 })
@@ -28,7 +31,27 @@ export class DataService {
   
   
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient)  { }
+
+  recupererCorpsGetPhoto():Observable<CorpsGetPhoto[]>{
+    return this.http
+    .get<CorpsGetPhoto[]>(`http://localhost:8081/collegues/photos`,{withCredentials: true})
+    
+    .pipe(
+      tap(tableauDeCorpsGetPhoto => {
+        return tableauDeCorpsGetPhoto}))
+    }
+  
+
+
+  VerifierAdresseEmail() :Observable<string[]>{
+    return this.http
+        .get<Collegue[]>(`http://localhost:8081/collegues`,{withCredentials: true})
+        
+        .pipe(
+          map(tableauDeCollegue => {
+            return tableauDeCollegue.map(collegue=> collegue.email)}))
+        }
 
   creerCollegue(nom,prenom,dateDeNaissance,email,urlPhoto){
 

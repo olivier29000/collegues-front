@@ -12,10 +12,22 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./collegue.component.css']
 })
 export class CollegueComponent implements OnInit {
+  contrat: Subscription;
+  collegueCourant:Collegue;
   creationCollegue:boolean=false;
-  constructor() { }
+  constructor(private dataService:DataService) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.contrat = this.dataService.subPostObs.subscribe(collegue =>{
+
+      console.log(collegue);
+      this.collegueCourant=collegue;
+      this.retour()
+      
+
+      
+    });
+  }
 
   retour(){
     this.creationCollegue=true;
@@ -26,5 +38,7 @@ export class CollegueComponent implements OnInit {
       this.creationCollegue=false;
   
   }
+
+  
 
 }

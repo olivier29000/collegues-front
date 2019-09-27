@@ -1,14 +1,13 @@
 <div class="row">
-<div class="col-12" *ngIf="creationCollegue">
+<div class="col-12" *ngIf="!creationCollegue">
 <app-collegue-creation ></app-collegue-creation>
 </div>
-<div class="col-12" *ngIf="!creationCollegue">
-<app-visu-modif-collegue ></app-visu-modif-collegue>
+<div class="col-12" *ngIf="creationCollegue">
+<app-visu-modif-collegue [collegueCourant]="collegueCourant"></app-visu-modif-collegue>
 </div>
 </div>
 <div class="row">
         
-<a *ngIf="creationCollegue" href="#" class="btn btn-primary" (click)=modifierVisualiserCollegue()>Visualiser Un Collegue</a>
-<a *ngIf="!creationCollegue" href="#" class="btn btn-primary"
-(click)="retour()">Creer Un Nouveau Collegue</a>
+<a *ngIf="creationCollegue" href="#"  (click)=modifierVisualiserCollegue()>Creer Un Nouveau Collegue</a>
+
 </div>

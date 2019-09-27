@@ -2,7 +2,7 @@
 
   <div class="row">
       <div class="col-4">
-    <img src="{{col.photoUrl}}" class="mr-3 " style="max-width: 40%;" alt="...">
+    <img src="{{collegueCourant.photoUrl}}" class="mr-3 " style="max-width: 40%;" alt="...">
     </div>
     <div class="col-8">
       
@@ -11,7 +11,7 @@
           <p class="card-text">Nom : </p>
         </div>
         <div class="col-6">
-          <p class="card-text">{{col.nom | uppercase}}</p>
+          <p class="card-text">{{collegueCourant.nom | uppercase}}</p>
         </div>
       </div>
       <div class="row">
@@ -19,7 +19,7 @@
           <p class="card-text">Prenom : </p>
         </div>
         <div class="col-6">
-          <p class="card-text">{{col.prenoms}}</p>
+          <p class="card-text">{{collegueCourant.prenoms}}</p>
         </div>
       </div>
       <div class="row">
@@ -27,7 +27,7 @@
           <p class="card-text">Matricule :</p>
         </div>
         <div class="col-6">
-          <p class="card-text">{{col.matricule}}</p>
+          <p class="card-text">{{collegueCourant.matricule}}</p>
         </div>
       </div>
       <div class="row">
@@ -35,7 +35,7 @@
           <p class="card-text">Date De Naissance :</p>
         </div>
         <div class="col-6">
-          <p class="card-text">{{col.dateDeNaissance |date:'dd/MM/yyyy'}}</p>
+          <p class="card-text">{{collegueCourant.dateDeNaissance |date:'dd/MM/yyyy'}}</p>
         </div>
       </div>
 
@@ -45,7 +45,7 @@
           <p class="card-text">Email : </p>
         </div>
         <div class="col-6">
-          <p class="card-text" *ngIf="modification">{{col.email}}</p>
+          <p class="card-text" *ngIf="modification">{{collegueCourant.email}}</p>
 
 
         </div>
@@ -56,7 +56,7 @@
         </div>
 
         <div class="col-6">
-          <p class="card-text" *ngIf="modification">{{col.photoUrl}}</p>
+          <p class="card-text" *ngIf="modification">{{collegueCourant.photoUrl}}</p>
 
 
         </div>
@@ -78,7 +78,7 @@
           </div>
           <div class="col-6">
 
-            <input [(ngModel)]="personne.email" name="nom" type="email" class="form-control" id="exampleInputEmail1"
+            <input [(ngModel)]="collegueCourant.email" name="nom" type="email" class="form-control" id="exampleInputEmail1"
               aria-describedby="emailHelp" required minlength="4" #etatEmail="ngModel">
           </div>
         </div>
@@ -95,7 +95,7 @@
 
           <div class="col-6">
 
-            <input [(ngModel)]="personne.urlPhoto" name="prenom" type="email" class="form-control"
+            <input [(ngModel)]="collegueCourant.photoUrl" name="prenom" type="email" class="form-control"
               id="exampleInputEmail1" aria-describedby="emailHelp" required minlength="4" #etatUrlPhoto="ngModel">
           </div>
 
@@ -103,7 +103,7 @@
         <div class="row">
           <div class="col-5">
             <a *ngIf="!modification" href="#" class="btn btn-primary"
-              (click)="etatForm.dirty?validerModificationCollegue(personne.email,personne.urlPhoto,col.matricule):retour()"
+              (click)="etatForm.dirty?validerModificationCollegue(collegueCourant.email,collegueCourant.photoUrl,collegueCourant.matricule):retour()"
               [ngClass]="{'isDisabled':etatForm.dirty && etatForm.invalid}">Valider</a>
           </div>
           <div class="col-2"></div>

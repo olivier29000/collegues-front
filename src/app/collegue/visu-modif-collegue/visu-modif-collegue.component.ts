@@ -14,7 +14,7 @@ export class VisuModifCollegueComponent implements OnInit {
   contrat: Subscription;
   modification:boolean=true;
   col: Collegue=this.dataService.recupererCollegueCourantAuDebut();
-  collegueCourant:Collegue;
+  @Input() collegueCourant:Collegue;
   
   personne = { email: '', urlPhoto: '' };
 
@@ -22,16 +22,8 @@ export class VisuModifCollegueComponent implements OnInit {
 
   ngOnInit() {
 
-
-    this.contrat = this.dataService.subPostObs.subscribe(collegue =>{
-
-      console.log(collegue);
-      this.col=collegue;
-      
-      console.log("email " + this.col.email)
-
-      this.personne = { email: this.col.email, urlPhoto: this.col.photoUrl };
-    });
+this.personne = { email: this.collegueCourant.email, urlPhoto: this.collegueCourant.photoUrl };
+    
       //this.col=this.dataService.recupererCollegueCourant(this.matriculeCourant)
   }
 
@@ -54,7 +46,7 @@ export class VisuModifCollegueComponent implements OnInit {
   }
   modifierCollegue(){
     console.log ("modifierCollegue");
-    
+    this.personne = { email: this.collegueCourant.email, urlPhoto: this.collegueCourant.photoUrl };
       this.modification=false;
   
   }

@@ -10,9 +10,19 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { CollegueCreationComponent } from './collegue/collegue-creation/collegue-creation.component';
 
-
-
+import { Routes, RouterModule } from '@angular/router';
+import { AccueilComponent } from './accueil/accueil.component';
+import { GallerieComponent } from './gallerie/gallerie.component';
+import { AproposComponent } from './apropos/apropos.component';
+import { ROUTES } from './app.routes'
 import { VisuModifCollegueComponent } from './collegue/visu-modif-collegue/visu-modif-collegue.component';
+import { UrlValidatorDirective } from './validators/url-validator.directive';
+import { EmailValidatorDirective } from './validators/email-validator.directive';
+import { SingleCollegueComponentComponent } from './single-collegue-component/single-collegue-component.component';
+
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,16 +31,23 @@ import { VisuModifCollegueComponent } from './collegue/visu-modif-collegue/visu-
     MenuComponent,
     AuthentificationComponent,
     CollegueCreationComponent,
-    VisuModifCollegueComponent
+    VisuModifCollegueComponent,
+    UrlValidatorDirective,
+    EmailValidatorDirective,
+    AccueilComponent,
+    GallerieComponent,
+    AproposComponent,
+    SingleCollegueComponentComponent
   ],
 
   imports: [
     NgbModule,
     BrowserModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    RouterModule.forRoot(ROUTES)
   ],
-  providers: [],
+  providers: [CollegueComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
