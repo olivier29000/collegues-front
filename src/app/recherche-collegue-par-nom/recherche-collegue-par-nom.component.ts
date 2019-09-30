@@ -1,6 +1,6 @@
 import { Component, OnInit,Input } from '@angular/core';
 import { CollegueMock } from '../mock/collegues.mock';
-import { Collegue } from '../models/collegue';
+import { Collegue } from '../models/Collegue';
 import { DataService } from '../services/data.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { CollegueComponent } from '../collegue/collegue.component';

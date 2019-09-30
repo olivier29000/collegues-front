@@ -4,7 +4,7 @@ import { CollegueMock } from '../mock/collegues.mock';
 import { HttpClient , HttpErrorResponse} from '@angular/common/http';
 import { tap, map } from 'rxjs/operators';
 import { Observable, of, Subject, BehaviorSubject } from 'rxjs';
-import { ObjetRechercheMatricule } from '../models/objetRechercheMatricule';
+import { ObjetRechercheMatricule } from '../models/ObjetRechercheMatricule';
 import {environment} from '../../environments/environment';
 import {HttpHeaders} from "@angular/common/http";
 
