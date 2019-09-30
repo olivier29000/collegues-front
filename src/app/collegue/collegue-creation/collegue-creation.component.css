@@ -5,3 +5,9 @@
     opacity : 0.5;
     text-decoration : none;
   }
+
+  a{
+    margin-top: 5%;
+    margin-right: auto;
+  margin-left: auto;
+  }

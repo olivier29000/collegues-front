@@ -1,21 +1,8 @@
-<app-menu></app-menu>
-<div class="container-fluid" *ngIf=connexion>
+<div class="container">
 
-        <div class="row">
-                <div class="col-6">
 
-                        <app-recherche-collegue-par-nom ></app-recherche-collegue-par-nom>
-                        
 
-                </div>
-                <div class="col-6">
+<router-outlet ></router-outlet>
 
-                        <app-collegue ></app-collegue>
-                </div>
 
-        </div>
-
-        
 </div>
-<router-outlet></router-outlet>
-<app-authentification *ngIf=!connexion></app-authentification>

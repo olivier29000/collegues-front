@@ -1,1 +1,74 @@
-<p>{{matricule}}</p>
+
+<app-menu ></app-menu>
+<div class="card mx-auto" style="width: 60%;">
+        <img class="card-img-top" src="{{collegue.photoUrl}}" alt="Card image cap">
+        <div class="card-body">
+          <div class="row">
+                <div class="col-6 col-lg-4">
+                  <p class="card-text">Nom : </p>
+                </div>
+                <div class="col-6 col-lg-8">
+                  <p class="card-text">{{collegue.nom | uppercase}}</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-6 col-lg-4">
+                  <p class="card-text">Prenom : </p>
+                </div>
+                <div class="col-6 col-lg-8">
+                  <p class="card-text">{{collegue.prenoms}}</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-6 col-lg-4">
+                  <p class="card-text">Matricule :</p>
+                </div>
+                <div class="col-6 col-lg-8">
+                  <p class="card-text">{{collegue.matricule}}</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-6 col-lg-4">
+                  <p class="card-text">Date De Naissance :</p>
+                </div>
+                <div class="col-6 col-lg-8">
+                  <p class="card-text">{{collegue.dateDeNaissance |date:'dd/MM/yyyy'}}</p>
+                </div>
+              </div>
+          
+          
+              <div class="row" >
+                <div class="col-6 col-lg-4">
+                  <p class="card-text">Email : </p>
+                </div>
+                <div class="col-6 col-lg-8">
+                  <p class="card-text">{{collegue.email}}</p>
+          
+          
+                </div>
+              </div>
+              <div class="row" >
+                <div class="col-6 col-lg-4">
+                  <p class="card-text">url photo :</p>
+                </div>
+          
+                <div class="col-6 col-lg-8">
+                  <p class="card-text" >{{collegue.photoUrl}}</p>
+          
+          
+                </div>
+          
+              </div>
+        </div>
+      </div>
+
+
+
+  
+
+
+
+
+
+
+

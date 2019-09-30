@@ -78,18 +78,18 @@
                           </div>
 
                     <div class="col-6">
- {{etatUrlPhoto.errors | json}}
+
                         <input [(ngModel)]="personne.urlPhoto" name="urlPhoto" type="email" class="form-control"
                             id="exampleInputEmail1" aria-describedby="emailHelp" required minlength="7" appUrlValidator
                             #etatUrlPhoto="ngModel">
                     </div>
 
                 </div>
-
+                <div class="row">
                 <a href="#" class="btn btn-primary"
                     (click)="creerCollegue(personne.nom,personne.prenom,personne.dateDeNaissance,personne.email,personne.urlPhoto)"
                     [ngClass]="{'isDisabled':(etatForm.dirty && etatForm.invalid)||!etatForm.dirty}">Créer Collegue</a>
-                
+                </div>
             </form>
 
 

@@ -8,6 +8,9 @@ import { ObjetRechercheMatricule } from '../models/objetRechercheMatricule';
 import {environment} from '../../environments/environment';
 import {HttpHeaders} from "@angular/common/http";
 
+
+
+
 const URL_BACKEND = environment.backendUrl;
 const httpOptions = {
   headers: new HttpHeaders({
@@ -35,7 +38,7 @@ export class DataService {
 
   recupererCorpsGetPhoto():Observable<CorpsGetPhoto[]>{
     return this.http
-    .get<CorpsGetPhoto[]>(`http://localhost:8081/collegues/photos`,{withCredentials: true})
+    .get<CorpsGetPhoto[]>(`${URL_BACKEND}/photos`,{withCredentials: true})
     
     .pipe(
       tap(tableauDeCorpsGetPhoto => {
@@ -46,7 +49,7 @@ export class DataService {
 
   VerifierAdresseEmail() :Observable<string[]>{
     return this.http
-        .get<Collegue[]>(`http://localhost:8081/collegues`,{withCredentials: true})
+        .get<Collegue[]>(`${URL_BACKEND}/collegues`,{withCredentials: true})
         
         .pipe(
           map(tableauDeCollegue => {
@@ -100,7 +103,7 @@ export class DataService {
     
     
     return this.http
-        .get<Collegue>(`http://localhost:8081/collegues/${matricule}`, { withCredentials: true})
+        .get<Collegue>(`${URL_BACKEND}/collegues/${matricule}`, { withCredentials: true})
         //.pipe(tap(list => (this.listeDeMatricules = list)));
         .pipe(
           tap(collegue => {
@@ -160,7 +163,7 @@ export class DataService {
     if (!cacheUtile) {
       
       return this.http
-        .get<string[]>(`http://localhost:8081/collegues?nom_collegue=${nom}`, { withCredentials: true})
+        .get<string[]>(`${URL_BACKEND}/collegues?nom_collegue=${nom}`, { withCredentials: true})
         .pipe(
           tap(list => {
           this.matriculesCache.push(new ObjetRechercheMatricule(nom,list))

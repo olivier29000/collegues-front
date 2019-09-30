@@ -6,7 +6,10 @@ import { Injectable } from '@angular/core';
   } from "@angular/common/http";
   import { HttpClient, HttpResponse, HttpErrorResponse } from "@angular/common/http";
   import { Observable, of, Subject, BehaviorSubject } from 'rxjs';
+  import { tap, map } from 'rxjs/operators';
+import { Router } from "@angular/router";
 
+  
 const URL_BACKEND = environment.backendUrl;
 const httpOptions = {
   headers: new HttpHeaders({
@@ -21,6 +24,8 @@ const httpOptions = {
 export class AuthService {
 
   private subConnecte = new BehaviorSubject(false);
+
+  constructor(private _http:HttpClient,private router:Router) { }
 
 authentification(_nomUtilisateur,_motDePasse){
   this._http
@@ -38,22 +43,27 @@ authentification(_nomUtilisateur,_motDePasse){
     httpOptions
   )
   .subscribe((data: any) => {
-    console.log(data);
     this.subConnecte.next(true);
-    console.log("authentification reussi");
+    this.router.navigate(["accueil"])
   },(error: HttpErrorResponse) => {
     console.log("error", error);
     this.subConnecte.next(false);
   });
 }
+
   get subConnecteObs(): Observable<Boolean> {
     return this.subConnecte.asObservable();
   }
   
-
   
 
+  isLoggedIn():Observable<any>{
+    return this._http.get(`${URL_BACKEND}/auth/user`,{withCredentials: true})
+  }
 
+  seDeconnecter(){
+    return this._http.post(`${URL_BACKEND}/logout`,null,{withCredentials: true});
+  }
 
-  constructor(private _http:HttpClient) { }
 }
+

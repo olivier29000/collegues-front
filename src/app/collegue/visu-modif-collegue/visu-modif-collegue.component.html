@@ -1,127 +1,120 @@
 
-
-  <div class="row">
+    <div class="row">
       <div class="col-4">
-    <img src="{{collegueCourant.photoUrl}}" class="mr-3 " style="max-width: 40%;" alt="...">
+        <img src="{{collegueCourant.photoUrl}}" class="mr-3 " style="max-width: 90%;" alt="...">
+      </div>
+      <div class="col-8">
+
+        <div class="row">
+          <div class="col-6">
+            <p class="card-text">Nom : </p>
+          </div>
+          <div class="col-6">
+            <p class="card-text">{{collegueCourant.nom | uppercase}}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <p class="card-text">Prenom : </p>
+          </div>
+          <div class="col-6">
+            <p class="card-text">{{collegueCourant.prenoms}}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <p class="card-text">Matricule :</p>
+          </div>
+          <div class="col-6">
+            <p class="card-text">{{collegueCourant.matricule}}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <p class="card-text">Date De Naissance :</p>
+          </div>
+          <div class="col-6">
+            <p class="card-text">{{collegueCourant.dateDeNaissance |date:'dd/MM/yyyy'}}</p>
+          </div>
+        </div>
+
+
+        <div class="row" *ngIf="modification">
+          <div class="col-6">
+            <p class="card-text">Email : </p>
+          </div>
+          <div class="col-6">
+            <p class="card-text" *ngIf="modification">{{collegueCourant.email}}</p>
+
+
+          </div>
+        </div>
+        <div class="row" *ngIf="modification">
+          <div class="col-6">
+            <p class="card-text">url photo :</p>
+          </div>
+
+          <div class="col-6">
+            <p class="card-text" *ngIf="modification">{{collegueCourant.photoUrl}}</p>
+
+
+          </div>
+
+        </div>
+
+
+        <form *ngIf="!modification" #etatForm="ngForm">
+
+
+
+          <div class="row">
+            <div class="col-6">
+              <p class="card-text">Email : <small id="passwordHelp" class="text-danger"
+                  *ngIf="etatEmail.dirty && etatEmail.invalid">
+                  Must be 8-20 characters long.
+                </small></p>
+
+            </div>
+            <div class="col-6">
+
+              <input [(ngModel)]="collegueCourant.email" name="nom" type="email" class="form-control"
+                id="exampleInputEmail1" aria-describedby="emailHelp" required minlength="4" #etatEmail="ngModel">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <p class="card-text">url photo :
+                <small id="passwordHelp" class="text-danger" *ngIf="etatUrlPhoto.dirty && etatUrlPhoto.invalid">
+                  Must be 8-20 characters long.
+                </small>
+              </p>
+
+              <p class="erreurSaisie" *ngIf="etatUrlPhoto.dirty && etatUrlPhoto.invalid"> Url incorrect</p>
+            </div>
+
+            <div class="col-6">
+
+              <input [(ngModel)]="collegueCourant.photoUrl" name="prenom" type="email" class="form-control"
+                id="exampleInputEmail1" aria-describedby="emailHelp" required minlength="4" #etatUrlPhoto="ngModel">
+            </div>
+
+          </div>
+          <div class="row">
+            <div class="col-5">
+              <a *ngIf="!modification" href="#" class="btn btn-primary"
+                (click)="etatForm.dirty?validerModificationCollegue(collegueCourant.email,collegueCourant.photoUrl,collegueCourant.matricule):retour()"
+                [ngClass]="{'isDisabled':etatForm.dirty && etatForm.invalid}">Valider</a>
+            </div>
+            <div class="col-2"></div>
+            <div class="col-5">
+              <a *ngIf="!modification" href="#" class="btn btn-primary" (click)="retour()">Retour</a>
+            </div>
+          </div>
+        </form>
+
+        <a *ngIf="modification" href="#" class="btn btn-primary" (click)="modifierCollegue()">Modifier Collegue
+          Courant</a>
+
+      </div>
     </div>
-    <div class="col-8">
-      
-      <div class="row">
-        <div class="col-6">
-          <p class="card-text">Nom : </p>
-        </div>
-        <div class="col-6">
-          <p class="card-text">{{collegueCourant.nom | uppercase}}</p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-6">
-          <p class="card-text">Prenom : </p>
-        </div>
-        <div class="col-6">
-          <p class="card-text">{{collegueCourant.prenoms}}</p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-6">
-          <p class="card-text">Matricule :</p>
-        </div>
-        <div class="col-6">
-          <p class="card-text">{{collegueCourant.matricule}}</p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-6">
-          <p class="card-text">Date De Naissance :</p>
-        </div>
-        <div class="col-6">
-          <p class="card-text">{{collegueCourant.dateDeNaissance |date:'dd/MM/yyyy'}}</p>
-        </div>
-      </div>
-
-
-      <div class="row" *ngIf="modification">
-        <div class="col-6">
-          <p class="card-text">Email : </p>
-        </div>
-        <div class="col-6">
-          <p class="card-text" *ngIf="modification">{{collegueCourant.email}}</p>
-
-
-        </div>
-      </div>
-      <div class="row" *ngIf="modification">
-        <div class="col-6">
-          <p class="card-text">url photo :</p>
-        </div>
-
-        <div class="col-6">
-          <p class="card-text" *ngIf="modification">{{collegueCourant.photoUrl}}</p>
-
-
-        </div>
-
-      </div>
-
-
-      <form *ngIf="!modification" #etatForm="ngForm">
-
-
-
-        <div class="row">
-          <div class="col-6">
-            <p class="card-text">Email : <small id="passwordHelp" class="text-danger"
-                *ngIf="etatEmail.dirty && etatEmail.invalid">
-                Must be 8-20 characters long.
-              </small></p>
-
-          </div>
-          <div class="col-6">
-
-            <input [(ngModel)]="collegueCourant.email" name="nom" type="email" class="form-control" id="exampleInputEmail1"
-              aria-describedby="emailHelp" required minlength="4" #etatEmail="ngModel">
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-6">
-            <p class="card-text">url photo :
-              <small id="passwordHelp" class="text-danger" *ngIf="etatUrlPhoto.dirty && etatUrlPhoto.invalid">
-                Must be 8-20 characters long.
-              </small>
-            </p>
-
-            <p class="erreurSaisie" *ngIf="etatUrlPhoto.dirty && etatUrlPhoto.invalid"> Url incorrect</p>
-          </div>
-
-          <div class="col-6">
-
-            <input [(ngModel)]="collegueCourant.photoUrl" name="prenom" type="email" class="form-control"
-              id="exampleInputEmail1" aria-describedby="emailHelp" required minlength="4" #etatUrlPhoto="ngModel">
-          </div>
-
-        </div>
-        <div class="row">
-          <div class="col-5">
-            <a *ngIf="!modification" href="#" class="btn btn-primary"
-              (click)="etatForm.dirty?validerModificationCollegue(collegueCourant.email,collegueCourant.photoUrl,collegueCourant.matricule):retour()"
-              [ngClass]="{'isDisabled':etatForm.dirty && etatForm.invalid}">Valider</a>
-          </div>
-          <div class="col-2"></div>
-          <div class="col-5">
-            <a *ngIf="!modification" href="#" class="btn btn-primary" (click)="retour()">Retour</a>
-          </div>
-        </div>
-      </form>
-
-      <a *ngIf="modification" href="#" class="btn btn-primary" (click)="modifierCollegue()">Modifier Collegue
-        Courant</a>
-
-      </div>
-
-    </div>
-
-
-
-
-
-
+  
