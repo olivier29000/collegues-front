@@ -7,6 +7,7 @@ import { Observable, of, Subject, BehaviorSubject } from 'rxjs';
 import { ObjetRechercheMatricule } from '../models/ObjetRechercheMatricule';
 import {environment} from '../../environments/environment';
 import {HttpHeaders} from "@angular/common/http";
+import { Router } from '@angular/router';
 
 
 
@@ -34,7 +35,7 @@ export class DataService {
   
   
 
-  constructor(private http: HttpClient)  { }
+  constructor(private http: HttpClient,private router:Router)  { }
 
   recupererCorpsGetPhoto():Observable<CorpsGetPhoto[]>{
     return this.http
@@ -78,6 +79,7 @@ export class DataService {
     console.log(data);
     //this.subConnecte.next(true);
     console.log("creation reussi");
+    this.router.navigate(["accueil"])
     //this.modifierCollegueDansLeCache(email,urlPhoto,matricule);
   },(error: HttpErrorResponse) => {
     console.log("error", error);

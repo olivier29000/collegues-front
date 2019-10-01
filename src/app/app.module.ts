@@ -37,7 +37,8 @@ import { SingleCollegueComponentComponent } from './single-collegue-component/si
     AccueilComponent,
     GallerieComponent,
     AproposComponent,
-    SingleCollegueComponentComponent
+    SingleCollegueComponentComponent,
+    
   ],
 
   imports: [
@@ -45,7 +46,8 @@ import { SingleCollegueComponentComponent } from './single-collegue-component/si
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    RouterModule.forRoot(ROUTES)
+    RouterModule.forRoot(ROUTES),
+    HttpClientModule
   ],
   providers: [CollegueComponent],
   bootstrap: [AppComponent]

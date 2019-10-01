@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
 import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-collegue-creation',
@@ -10,10 +11,10 @@ import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
 export class CollegueCreationComponent implements OnInit {
 
 
-  personne = { nom: '', prenom:'' ,dateDeNaissance:'' ,email: '', urlPhoto: '' };
+  personne = { nom: '', prenom:'' ,dateDeNaissance:new NgbDate(1900,12,12) ,email: '', urlPhoto: '' };
 
 
-  constructor( private dataService : DataService) { }
+  constructor( private dataService : DataService,private router:Router) { }
 
   ngOnInit() {
   }
@@ -32,7 +33,7 @@ export class CollegueCreationComponent implements OnInit {
 
     let jour:string;
     if (dateDeNaissance.day<10) {
-      console.log("un zero een plus")
+      console.log("un zero en plus")
       jour="0"+dateDeNaissance.day
     } else {
       jour=""+dateDeNaissance.day
@@ -41,6 +42,7 @@ export class CollegueCreationComponent implements OnInit {
     const dateDeNaissanceString:string=dateDeNaissance.year+mois+jour
     console.log(dateDeNaissanceString)
     this.dataService.creerCollegue(nom,prenom,dateDeNaissanceString,email,urlPhoto);
+    this.router.navigate(["accueil"]);
   }
 
   retour(){
